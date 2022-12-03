@@ -3,21 +3,32 @@ import { useFormik } from "formik";
 // TODO: import useFormik from formik library
 
 function App() {
-  const [errors, setErrors] = useState({emailError: '', pswError: ''})
-   const formik = useFormik({
+  const [errors, setErrors] = useState({})
+  //const [isSubmitting, setIsSubmitting] = useState(false)  
+  
+  const formik = useFormik({
     initialValues: { email: '', password: ''},
     onSubmit: values => {
       setErrors({...emailValidation(values.email), ...pswValidation(values.password)})
-    }
+      //setIsSubmitting(true)
+    } 
   })
   
+  if(errors.emailError == '' && errors.pswError == ''){
+    alert("Login Successful")
+    //setErrors({})
+  }
+
   function emailValidation(email){
     let message = {}
     if(email == ''){
       message = {emailError:"Field Required"}
     }
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      message = {emailError:'Username should be an email'};
+    }
     else{
-      message = {emailError:""}
+      message = {emailError:''}
     }
     return message;
   }
@@ -27,11 +38,11 @@ function App() {
     if(psw == ''){ 
       message = {pswError:"Field Required"}   }
     else{
-      message = {pswError:""}
+      message = {pswError:''}
     }
     return message;
   }
-  
+
 
   return (
     <div>

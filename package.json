@@ -10,7 +10,8 @@
     "react-scripts": "^4.0.0",
     "react-simple-form-validator": "^0.3.1",
     "validate.js": "^0.13.1",
-    "validation.js": "^1.0.3"
+    "validation.js": "^1.0.3",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
